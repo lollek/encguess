@@ -2,10 +2,52 @@ package main
 
 import "testing"
 
-func TestUTF8BOM(t *testing.T) {
-    var data = []byte {0xef, 0xbb, 0xbf}
-    if result := GuessEncodingFromBOM(&data, len(data)); result != CHARSET_UTF8 {
-        t.Fatalf("Failed to handle UTF-8 file. Expected UTF-8. Found %s", result)
+func TestUTF1(t *testing.T) {
+    var data = []byte {0xF7, 0x64, 0x4C}
+    if result := GuessEncodingFromBOM(&data, len(data)); result != UTF1 {
+        t.Fatalf("Failed to handle UTF-1 file. Found %s", result)
+    }
+}
+
+func TestUTF7(t *testing.T) {
+    var data = []byte {0x2B, 0x2F, 0x76}
+    if result := GuessEncodingFromBOM(&data, len(data)); result != UTF7 {
+        t.Fatalf("Failed to handle UTF-7 file. Found %s", result)
+    }
+}
+
+func TestUTF8(t *testing.T) {
+    var data = []byte {0xEF, 0xBB, 0xBF}
+    if result := GuessEncodingFromBOM(&data, len(data)); result != UTF8 {
+        t.Fatalf("Failed to handle UTF-8 file. Found %s", result)
+    }
+}
+
+func TestUTF16_BE(t *testing.T) {
+    var data = []byte {0xFE, 0xFF}
+    if result := GuessEncodingFromBOM(&data, len(data)); result != UTF16_BE {
+        t.Fatalf("Failed to handle UTF-16 BE file. Found %s", result)
+    }
+}
+
+func TestUTF16_LE(t *testing.T) {
+    var data = []byte {0xFF, 0xFE}
+    if result := GuessEncodingFromBOM(&data, len(data)); result != UTF16_LE {
+        t.Fatalf("Failed to handle UTF-16 LE file. Found %s", result)
+    }
+}
+
+func TestUTF32_BE(t *testing.T) {
+    var data = []byte {0x00, 0x00, 0xFE, 0xFF}
+    if result := GuessEncodingFromBOM(&data, len(data)); result != UTF32_BE {
+        t.Fatalf("Failed to handle UTF-32 BE file. Found %s", result)
+    }
+}
+
+func TestUTF32_LE(t *testing.T) {
+    var data = []byte {0xFF, 0xFE, 0x00, 0x00}
+    if result := GuessEncodingFromBOM(&data, len(data)); result != UTF32_LE {
+        t.Fatalf("Failed to handle UTF-32 LE file. Found %s", result)
     }
 }
 
@@ -15,5 +57,14 @@ func TestNullFile(t *testing.T) {
     }
     if result := GuessEncodingFromBOM(nil, 1); result != UNKNOWN {
         t.Fatalf("Failed to handle nil file. Expected UNKNOWN. Found %s", result)
+    }
+}
+
+func TestFileLengths(t *testing.T) {
+    for size := 0; size < 4096; size++ {
+        var data = make([]byte, size)
+        if result := GuessEncodingFromBOM(&data, size); result != UNKNOWN {
+            t.Fatalf("Failed to handle size %d file. Expected UNKNOWN. Found %s", size, result)
+        }
     }
 }
