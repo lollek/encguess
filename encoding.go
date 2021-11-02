@@ -11,6 +11,10 @@ const (
     UTF16_LE Encoding = iota
     UTF32_BE Encoding = iota
     UTF32_LE Encoding = iota
+    UTF_EBCDIC Encoding = iota
+    SCSU Encoding = iota
+    BOCU_1 Encoding = iota
+    GB_18030 Encoding = iota
 )
 
 func (e Encoding) String() string {
@@ -23,5 +27,9 @@ func (e Encoding) String() string {
     case UTF16_LE: return "UTF-16 Little Endian"
     case UTF32_BE: return "UTF-32 Big Endian"
     case UTF32_LE: return "UTF-32 Little Endian"
+    case UTF_EBCDIC: return "UTF-EBCDIC"
+    case SCSU: return "SCSU"
+    case BOCU_1: return "BOCU-1"
+    case GB_18030: return "GB-18030"
     }
 }
