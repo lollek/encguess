@@ -2,6 +2,9 @@ package main
 
 import "bytes"
 
+// Parses the data received and sees if there is any BOM which matches a known
+// BOM - in that case the encoding from that BOM is returned. Else UNKNOWN is
+// returned.
 func GuessEncodingFromBOM(data *[]byte, dataSize int) Encoding {
 	if dataSize < 2 || data == nil {
 		return UNKNOWN
