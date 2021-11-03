@@ -1,4 +1,4 @@
-package main
+package encguess
 
 type Encoding int
 
