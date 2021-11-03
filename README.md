@@ -10,9 +10,9 @@ Currently, the following encodings are supported from parsing the BOM:
 * UTF-1
 * UTF-7
 * UTF-8
-* UTF-16 (Lower Endian)
+* UTF-16 (Little Endian)
 * UTF-16 (Big Endian)
-* UTF-32 (Lower Endian)
+* UTF-32 (Little Endian)
 * UTF-32 (Big Endian)
 * UTF-EBCDIC
 * SCSU
