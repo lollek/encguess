@@ -1,4 +1,4 @@
-package encguess
+package main
 
 import "bytes"
 
