@@ -26,9 +26,9 @@ func main() {
 	data := make([]byte, os.Getpagesize())
 	firstRun := true
 
-	printableAsciiChecker := CreatePrintableAsciiChecker()
-	asciiChecker := CreateAsciiChecker()
-	utf8Checker := CreateUtf8Checker()
+	printableAsciiChecker := NewPrintableAsciiChecker()
+	asciiChecker := NewAsciiChecker()
+	utf8Checker := NewUtf8Checker()
 loop:
 	for {
 		count, err := file.Read(data)
@@ -51,19 +51,19 @@ loop:
 		}
 
 		for i := 0; i < count; i++ {
-			printableAsciiChecker(data[i])
-			asciiChecker(data[i])
-			utf8Checker(data[i])
+			printableAsciiChecker.CheckNext(data[i])
+			asciiChecker.CheckNext(data[i])
+			utf8Checker.CheckNext(data[i])
 		}
 	}
 
 	switch {
-	case printableAsciiChecker(0x0A):
-		println("Printable ASCII")
-	case asciiChecker(0x0A):
-		println("ASCII")
-	case utf8Checker(0):
-		println("UTF-8")
+	case printableAsciiChecker.Validates():
+		fmt.Printf("%s\n", &printableAsciiChecker)
+	case asciiChecker.Validates():
+		fmt.Printf("%s\n", &asciiChecker)
+	case utf8Checker.Validates():
+		fmt.Printf("%s\n", &utf8Checker)
 	default:
 		println("Unknown encoding")
 	}
