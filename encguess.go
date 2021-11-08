@@ -53,7 +53,7 @@ loop:
 		for i := 0; i < count; i++ {
 			printableAsciiChecker(data[i])
 			asciiChecker(data[i])
-			utf8Checker(data[i]);
+			utf8Checker(data[i])
 		}
 	}
 

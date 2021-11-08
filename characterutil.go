@@ -26,7 +26,7 @@ func CreateAsciiChecker() func(byte) bool {
 
 	return func(character byte) bool {
 		if !isAscii {
-			return false;
+			return false
 		}
 		isAscii = character&0x80 == 0
 		return isAscii
@@ -51,21 +51,21 @@ func CreateUtf8Checker() func(byte) bool {
 		}
 
 		if currentIndex == 0 {
-			if character & 0x80 == 0 {
+			if character&0x80 == 0 {
 				currentIndex = 0
 				maxIndex = 0
 				return true
 			}
 			currentIndex = 1
-			if character & 0xE0 == 0xC0 {
+			if character&0xE0 == 0xC0 {
 				maxIndex = 1
 				return true
 			}
-			if character & 0xF0 == 0xE0 {
+			if character&0xF0 == 0xE0 {
 				maxIndex = 2
 				return true
 			}
-			if character & 0xF8 == 0xF0 {
+			if character&0xF8 == 0xF0 {
 				maxIndex = 3
 				return true
 			}
@@ -73,7 +73,7 @@ func CreateUtf8Checker() func(byte) bool {
 			return isUTF8
 		}
 
-		if character & 0xC0 == 0x80 {
+		if character&0xC0 == 0x80 {
 			if currentIndex == maxIndex {
 				currentIndex = 0
 			} else {
