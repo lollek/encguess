@@ -22,6 +22,7 @@ Currently, the following encodings are supported from parsing the BOM:
 And the following encodings are supported from parsing the rest of the file:
 * ASCII
 * Printable ASCII
+* UTF-8
 
 ## Requirement
 * Go (v1.13+)

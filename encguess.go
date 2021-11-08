@@ -28,6 +28,7 @@ func main() {
 
 	matchesPrintableASCII := true
 	matchesASCII := true
+	utf8Checker := CreateUTF8Checker()
 loop:
 	for {
 		count, err := file.Read(data)
@@ -56,6 +57,7 @@ loop:
 			if matchesASCII && !matchesPrintableASCII {
 				matchesASCII = IsASCII(data[i])
 			}
+			utf8Checker(data[i]);
 		}
 	}
 
@@ -64,6 +66,8 @@ loop:
 		println("Printable ASCII")
 	case matchesASCII:
 		println("ASCII")
+	case utf8Checker(0):
+		println("UTF-8")
 	default:
 		println("Unknown encoding")
 	}
