@@ -1,23 +1,39 @@
 package main
 
-func IsPrintableASCII(character byte) bool {
-	if 0x20 <= character && character <= 0x7E {
-		return true
-	}
+func CreatePrintableAsciiChecker() func(byte) bool {
+	isPrintableAscii := true
 
-	switch character {
-	case 0x0A /* \n */, 0x0B /* \v */, 0x0D /* \r */ :
-		return true
-	default:
-		return false
+	return func(character byte) bool {
+		if !isPrintableAscii {
+			return false
+		}
+		if 0x20 <= character && character <= 0x7E {
+			return true
+		}
+
+		switch character {
+		case 0x0A /* \n */, 0x0B /* \v */, 0x0D /* \r */ :
+			return true
+		default:
+			isPrintableAscii = false
+			return isPrintableAscii
+		}
 	}
 }
 
-func IsASCII(character byte) bool {
-	return character&0x80 == 0
+func CreateAsciiChecker() func(byte) bool {
+	isAscii := true
+
+	return func(character byte) bool {
+		if !isAscii {
+			return false;
+		}
+		isAscii = character&0x80 == 0
+		return isAscii
+	}
 }
 
-func CreateUTF8Checker() func(byte) bool {
+func CreateUtf8Checker() func(byte) bool {
 	// UTF-8 characters can be one to four bytes, depending on the starting
 	// flag. See https://en.wikipedia.org/wiki/UTF-8.
 

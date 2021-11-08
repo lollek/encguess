@@ -26,9 +26,9 @@ func main() {
 	data := make([]byte, os.Getpagesize())
 	firstRun := true
 
-	matchesPrintableASCII := true
-	matchesASCII := true
-	utf8Checker := CreateUTF8Checker()
+	printableAsciiChecker := CreatePrintableAsciiChecker()
+	asciiChecker := CreateAsciiChecker()
+	utf8Checker := CreateUtf8Checker()
 loop:
 	for {
 		count, err := file.Read(data)
@@ -51,20 +51,16 @@ loop:
 		}
 
 		for i := 0; i < count; i++ {
-			if matchesPrintableASCII {
-				matchesPrintableASCII = IsPrintableASCII(data[i])
-			}
-			if matchesASCII && !matchesPrintableASCII {
-				matchesASCII = IsASCII(data[i])
-			}
+			printableAsciiChecker(data[i])
+			asciiChecker(data[i])
 			utf8Checker(data[i]);
 		}
 	}
 
 	switch {
-	case matchesPrintableASCII:
+	case printableAsciiChecker(0x0A):
 		println("Printable ASCII")
-	case matchesASCII:
+	case asciiChecker(0x0A):
 		println("ASCII")
 	case utf8Checker(0):
 		println("UTF-8")
