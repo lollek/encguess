@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/lollek/encodingutil/checker"
 	"fmt"
+	"github.com/lollek/encodingutil/checker"
 	"io"
 	"os"
 )

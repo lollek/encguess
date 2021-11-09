@@ -1,8 +1,8 @@
 package checker
 
 import (
-	"testing"
 	"github.com/lollek/encodingutil/encoding"
+	"testing"
 )
 
 func TestUTF1(t *testing.T) {
