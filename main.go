@@ -68,8 +68,8 @@ loop:
 	case 1:
 		fmt.Printf("%s\n", checkers[0].Encoding())
 	default:
-		for checkerIndex := 0; checkerIndex < len(checkers); checkerIndex++ {
-			fmt.Printf("%s\n", checkers[checkerIndex].Encoding())
+		for _, checker := range checkers {
+			fmt.Printf("%s\n", checker.Encoding())
 		}
 	}
 }
