@@ -1,6 +1,6 @@
-# Encguess
+# Encoding Guesser
 
-Encguess is an application which attempts to guess the encoding of a given file.
+Encoding guesser is an application and a library which attempts to guess the encoding of a given file.
 It will be focused on solving practical problems which I have encountered, so it
 might be a bit too tailored to me, and not generic enough for general use.
 
