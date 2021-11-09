@@ -6,16 +6,16 @@ type Utf8Checker struct {
 	maxIndex     int
 }
 
-func NewUtf8Checker() Utf8Checker {
-	return Utf8Checker{
+func NewUtf8Checker() *Utf8Checker {
+	return &Utf8Checker{
 		validates:    true,
 		currentIndex: 0,
 		maxIndex:     0,
 	}
 }
 
-func (checker *Utf8Checker) String() string {
-	return "UTF-8"
+func (checker *Utf8Checker) Encoding() Encoding {
+	return UTF8
 }
 
 func (checker *Utf8Checker) Validates() bool {

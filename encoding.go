@@ -3,24 +3,30 @@ package main
 type Encoding int
 
 const (
-	UNKNOWN    Encoding = iota
-	UTF1       Encoding = iota
-	UTF7       Encoding = iota
-	UTF8       Encoding = iota
-	UTF16_BE   Encoding = iota
-	UTF16_LE   Encoding = iota
-	UTF32_BE   Encoding = iota
-	UTF32_LE   Encoding = iota
-	UTF_EBCDIC Encoding = iota
-	SCSU       Encoding = iota
-	BOCU_1     Encoding = iota
-	GB_18030   Encoding = iota
+	UNKNOWN         Encoding = iota
+	ASCII           Encoding = iota
+	PRINTABLE_ASCII Encoding = iota
+	UTF1            Encoding = iota
+	UTF7            Encoding = iota
+	UTF8            Encoding = iota
+	UTF16_BE        Encoding = iota
+	UTF16_LE        Encoding = iota
+	UTF32_BE        Encoding = iota
+	UTF32_LE        Encoding = iota
+	UTF_EBCDIC      Encoding = iota
+	SCSU            Encoding = iota
+	BOCU_1          Encoding = iota
+	GB_18030        Encoding = iota
 )
 
 func (e Encoding) String() string {
 	switch e {
-	default:
+	case UNKNOWN:
 		return "UNKNOWN"
+	case ASCII:
+		return "ASCII"
+	case PRINTABLE_ASCII:
+		return "Printable ASCII"
 	case UTF1:
 		return "UTF-1"
 	case UTF7:
@@ -43,5 +49,7 @@ func (e Encoding) String() string {
 		return "BOCU-1"
 	case GB_18030:
 		return "GB-18030"
+	default:
+		return "Woops, I forgot to name this encoding"
 	}
 }

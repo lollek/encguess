@@ -4,14 +4,14 @@ type AsciiChecker struct {
 	validates bool
 }
 
-func NewAsciiChecker() AsciiChecker {
-	return AsciiChecker{
+func NewAsciiChecker() *AsciiChecker {
+	return &AsciiChecker{
 		validates: true,
 	}
 }
 
-func (checker *AsciiChecker) String() string {
-	return "ASCII"
+func (checker *AsciiChecker) Encoding() Encoding {
+	return ASCII
 }
 
 func (checker *AsciiChecker) Validates() bool {

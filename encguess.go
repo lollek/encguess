@@ -26,9 +26,11 @@ func main() {
 	data := make([]byte, os.Getpagesize())
 	firstRun := true
 
-	printableAsciiChecker := NewPrintableAsciiChecker()
-	asciiChecker := NewAsciiChecker()
-	utf8Checker := NewUtf8Checker()
+	checkers := []EncodingChecker{
+		NewPrintableAsciiChecker(),
+		NewAsciiChecker(),
+		NewUtf8Checker(),
+	}
 loop:
 	for {
 		count, err := file.Read(data)
@@ -51,20 +53,30 @@ loop:
 		}
 
 		for i := 0; i < count; i++ {
-			printableAsciiChecker.CheckNext(data[i])
-			asciiChecker.CheckNext(data[i])
-			utf8Checker.CheckNext(data[i])
+			character := data[i]
+			for checkerIndex := 0; checkerIndex < len(checkers); {
+				checker := checkers[checkerIndex]
+				checker.CheckNext(character)
+				if !checker.Validates() {
+					checkers = append(checkers[:checkerIndex], checkers[checkerIndex+1:]...)
+				} else {
+					checkerIndex++
+				}
+			}
+			if len(checkers) == 0 {
+				break loop
+			}
 		}
 	}
 
-	switch {
-	case printableAsciiChecker.Validates():
-		fmt.Printf("%s\n", &printableAsciiChecker)
-	case asciiChecker.Validates():
-		fmt.Printf("%s\n", &asciiChecker)
-	case utf8Checker.Validates():
-		fmt.Printf("%s\n", &utf8Checker)
+	switch len(checkers) {
+	case 0:
+		println("Unknown")
+	case 1:
+		fmt.Printf("%s\n", checkers[0].Encoding())
 	default:
-		println("Unknown encoding")
+		for checkerIndex := 0; checkerIndex < len(checkers); checkerIndex++ {
+			fmt.Printf("%s\n", checkers[checkerIndex].Encoding())
+		}
 	}
 }

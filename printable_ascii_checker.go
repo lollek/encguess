@@ -4,14 +4,14 @@ type PrintableAsciiChecker struct {
 	validates bool
 }
 
-func NewPrintableAsciiChecker() PrintableAsciiChecker {
-	return PrintableAsciiChecker{
+func NewPrintableAsciiChecker() *PrintableAsciiChecker {
+	return &PrintableAsciiChecker{
 		validates: true,
 	}
 }
 
-func (checker *PrintableAsciiChecker) String() string {
-	return "Printable ASCII"
+func (checker *PrintableAsciiChecker) Encoding() Encoding {
+	return PRINTABLE_ASCII
 }
 
 func (checker *PrintableAsciiChecker) Validates() bool {
