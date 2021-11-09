@@ -1,6 +1,6 @@
-# Encoding Guesser
+# Encoding Util
 
-Encoding guesser is an application and a library which attempts to guess the encoding of a given file.
+Encoding util is an application and a library which attempts to guess the encoding of a given file.
 It will be focused on solving practical problems which I have encountered, so it
 might be a bit too tailored to me, and not generic enough for general use.
 
@@ -33,5 +33,5 @@ Either run `make` or `go build .`
 
 ## Running
 
-After compiling, the program can be run with ./engcuess FILENAME, where FILENAME
+After compiling, the program can be run with ./encodingutil FILENAME, where FILENAME
 is the name of the file you want to know the encoding of.

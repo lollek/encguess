@@ -1,4 +1,4 @@
-PROGNAME = ./encguess
+PROGNAME = ./encodingutil
 
 all: build
 .PHONY: all
