@@ -1,4 +1,4 @@
-package main
+package encoding
 
 type Encoding int
 

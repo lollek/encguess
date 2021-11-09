@@ -1,4 +1,8 @@
-package main
+package checker
+
+import (
+	"github.com/lollek/encodingutil/encoding"
+)
 
 type Utf8Checker struct {
 	validates    bool
@@ -14,8 +18,8 @@ func NewUtf8Checker() *Utf8Checker {
 	}
 }
 
-func (checker *Utf8Checker) Encoding() Encoding {
-	return UTF8
+func (checker *Utf8Checker) Encoding() encoding.Encoding {
+	return encoding.UTF8
 }
 
 func (checker *Utf8Checker) Validates() bool {

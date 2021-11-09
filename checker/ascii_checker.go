@@ -1,4 +1,8 @@
-package main
+package checker
+
+import (
+	"github.com/lollek/encodingutil/encoding"
+)
 
 type AsciiChecker struct {
 	validates bool
@@ -10,8 +14,8 @@ func NewAsciiChecker() *AsciiChecker {
 	}
 }
 
-func (checker *AsciiChecker) Encoding() Encoding {
-	return ASCII
+func (checker *AsciiChecker) Encoding() encoding.Encoding {
+	return encoding.ASCII
 }
 
 func (checker *AsciiChecker) Validates() bool {

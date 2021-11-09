@@ -1,6 +1,8 @@
 package main
 
 import (
+	"github.com/lollek/encodingutil/checker"
+	"github.com/lollek/encodingutil/encoding"
 	"fmt"
 	"io"
 	"os"
@@ -26,10 +28,10 @@ func main() {
 	data := make([]byte, os.Getpagesize())
 	firstRun := true
 
-	checkers := []EncodingChecker{
-		NewPrintableAsciiChecker(),
-		NewAsciiChecker(),
-		NewUtf8Checker(),
+	checkers := []checker.EncodingChecker{
+		checker.NewPrintableAsciiChecker(),
+		checker.NewAsciiChecker(),
+		checker.NewUtf8Checker(),
 	}
 loop:
 	for {
@@ -46,8 +48,8 @@ loop:
 
 		if firstRun {
 			firstRun = false
-			if encoding := GuessEncodingFromBOM(&data, count); encoding != UNKNOWN {
-				fmt.Printf("BOM-encoding: %s\n", encoding)
+			if enc := GuessEncodingFromBOM(&data, count); enc != encoding.UNKNOWN {
+				fmt.Printf("BOM-encoding: %s\n", enc)
 				os.Exit(0)
 			}
 		}
