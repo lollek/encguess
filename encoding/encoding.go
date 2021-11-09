@@ -17,6 +17,7 @@ const (
 	SCSU            Encoding = iota
 	BOCU_1          Encoding = iota
 	GB_18030        Encoding = iota
+	ISO_8859_1      Encoding = iota
 )
 
 func (e Encoding) String() string {
@@ -49,6 +50,8 @@ func (e Encoding) String() string {
 		return "BOCU-1"
 	case GB_18030:
 		return "GB-18030"
+	case ISO_8859_1:
+		return "ISO-8859-1"
 	default:
 		return "Woops, I forgot to name this encoding"
 	}

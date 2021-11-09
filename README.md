@@ -23,6 +23,7 @@ And the following encodings are supported from parsing the rest of the file:
 * ASCII
 * Printable ASCII
 * UTF-8
+* ISO-8859-1
 
 ## Requirement
 * Go (v1.13+)

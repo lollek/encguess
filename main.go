@@ -31,6 +31,7 @@ func main() {
 		checker.NewPrintableAsciiChecker(),
 		checker.NewAsciiChecker(),
 		checker.NewUtf8Checker(),
+		checker.NewIso88591Checker(),
 	}
 loop:
 	for {
