@@ -18,6 +18,10 @@ func (checker *AsciiChecker) Encoding() encoding.Encoding {
 	return encoding.ASCII
 }
 
+func (checker *AsciiChecker) Probability() Probability {
+	return MEDIUM
+}
+
 func (checker *AsciiChecker) Validates() bool {
 	return checker.validates
 }

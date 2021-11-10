@@ -5,12 +5,12 @@ import (
 )
 
 type Iso88591Checker struct {
-	validates    bool
+	validates bool
 }
 
 func NewIso88591Checker() *Iso88591Checker {
 	return &Iso88591Checker{
-		validates:    true,
+		validates: true,
 	}
 }
 
@@ -22,6 +22,10 @@ func (checker *Iso88591Checker) Validates() bool {
 	return checker.validates
 }
 
+func (checker *Iso88591Checker) Probability() Probability {
+	return MEDIUM
+}
+
 func (checker *Iso88591Checker) CheckNext(character byte) {
 	if !checker.Validates() {
 		return
@@ -31,4 +35,3 @@ func (checker *Iso88591Checker) CheckNext(character byte) {
 		checker.validates = false
 	}
 }
-

@@ -35,6 +35,10 @@ func (checker *BomChecker) Validates() bool {
 	return checker.validates
 }
 
+func (checker *BomChecker) Probability() Probability {
+	return HIGH
+}
+
 func (checker *BomChecker) CheckNext(character byte) {
 	if checker.doneParsing {
 		return

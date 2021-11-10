@@ -6,6 +6,7 @@ import (
 
 type EncodingChecker interface {
 	Validates() bool
+	Probability() Probability
 	Encoding() encoding.Encoding
 	CheckNext(character byte)
 }

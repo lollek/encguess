@@ -67,10 +67,10 @@ loop:
 	case 0:
 		println("Unknown")
 	case 1:
-		fmt.Printf("%s\n", checkers[0].Encoding())
+		fmt.Printf("%s (probability: %s)\n", checkers[0].Encoding(), checkers[0].Probability())
 	default:
 		for _, checker := range checkers {
-			fmt.Printf("%s\n", checker.Encoding())
+			fmt.Printf("%s (probability: %s)\n", checker.Encoding(), checker.Probability())
 		}
 	}
 }

@@ -18,6 +18,10 @@ func (checker *PrintableAsciiChecker) Encoding() encoding.Encoding {
 	return encoding.PRINTABLE_ASCII
 }
 
+func (checker *PrintableAsciiChecker) Probability() Probability {
+	return VERY_HIGH
+}
+
 func (checker *PrintableAsciiChecker) Validates() bool {
 	return checker.validates
 }

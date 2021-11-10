@@ -8,6 +8,7 @@ type Utf8Checker struct {
 	validates    bool
 	currentIndex int
 	maxIndex     int
+	probability  Probability
 }
 
 func NewUtf8Checker() *Utf8Checker {
@@ -15,6 +16,7 @@ func NewUtf8Checker() *Utf8Checker {
 		validates:    true,
 		currentIndex: 0,
 		maxIndex:     0,
+		probability:  MEDIUM,
 	}
 }
 
@@ -24,6 +26,10 @@ func (checker *Utf8Checker) Encoding() encoding.Encoding {
 
 func (checker *Utf8Checker) Validates() bool {
 	return checker.validates
+}
+
+func (checker *Utf8Checker) Probability() Probability {
+	return checker.probability
 }
 
 func (checker *Utf8Checker) CheckNext(character byte) {
@@ -56,6 +62,7 @@ func (checker *Utf8Checker) CheckNext(character byte) {
 		} else {
 			checker.currentIndex += 1
 		}
+		checker.probability = HIGH
 	} else {
 		checker.validates = false
 	}
