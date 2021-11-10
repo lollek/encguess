@@ -23,4 +23,3 @@ func (p Probability) String() string {
 		return "???"
 	}
 }
-

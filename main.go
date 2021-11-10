@@ -2,14 +2,14 @@ package main
 
 import (
 	"flag"
-	"github.com/lollek/encodingutil/fileparser"
 	"fmt"
+	"github.com/lollek/encodingutil/fileparser"
 	"os"
 	"sort"
 )
 
 var (
-	printFileName *bool
+	printFileName              *bool
 	printAllPotentialEncodings *bool
 )
 

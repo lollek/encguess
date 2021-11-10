@@ -9,7 +9,7 @@ import (
 )
 
 type PotentialEncodingPair struct {
-	Encoding encoding.Encoding
+	Encoding    encoding.Encoding
 	Probability checker.Probability
 }
 
@@ -64,7 +64,7 @@ loop:
 	potentialEncodings := make([]PotentialEncodingPair, len(checkers))
 	for i, checker := range checkers {
 		potentialEncodings[i] = PotentialEncodingPair{
-			Encoding: checker.Encoding(),
+			Encoding:    checker.Encoding(),
 			Probability: checker.Probability(),
 		}
 	}
@@ -73,4 +73,3 @@ loop:
 		PotentialEncodings: potentialEncodings,
 	}, nil
 }
-
